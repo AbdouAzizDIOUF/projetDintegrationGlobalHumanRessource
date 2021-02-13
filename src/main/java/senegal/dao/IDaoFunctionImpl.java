@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class IDaoFunctionImpl implements IDaoFunction{
+public class IDaoFunctionImpl implements senegal.dao.IDaoFunction {
 
     public ResultSet resultSet = null;
     private PreparedStatement preparedStatement;
@@ -29,7 +29,7 @@ public class IDaoFunctionImpl implements IDaoFunction{
         resultSet=preparedStatement.executeQuery();
         while (resultSet.next()){
             int nombreHeurs = resultSet.getInt("nombreheure");
-            double tauxHoraires = resultSet.getDouble("nombreheure");
+            double tauxHoraires = resultSet.getDouble("tauxhoraire");
             double montantAvantage = resultSet.getDouble("montantavantage");
             int heureSup = resultSet.getInt("heuresup");
             double montantpret = resultSet.getDouble("montantpret");
@@ -49,9 +49,9 @@ public class IDaoFunctionImpl implements IDaoFunction{
         preparedStatement =DbConnexion.getPreparedStatement("SELECT * FROM infopaie");
         resultSet=preparedStatement.executeQuery();
         while (resultSet.next()){
-            int id = resultSet.getInt("id");
+            int id = resultSet.getInt("employe");
             int nombreHeurs = resultSet.getInt("nombreheure");
-            double tauxHoraires = resultSet.getDouble("nombreheure");
+            double tauxHoraires = resultSet.getDouble("tauxhoraire");
             double montantAvantage = resultSet.getDouble("montantavantage");
             int heureSup = resultSet.getInt("heuresup");
             double montantpret = resultSet.getDouble("montantpret");

@@ -12,6 +12,7 @@ public class InfoPaie {
     protected double montantAvantage;
     protected int heureSup;
     protected double montantPret;
+    protected String periodePaie;
 
     protected Employe employe;
 

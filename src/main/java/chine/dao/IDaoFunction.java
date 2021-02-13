@@ -1,24 +1,23 @@
 package chine.dao;
 
 import chine.model.EmployeChine;
-import model.Employe;
-import senegal.modele.EmployeSenegal;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface IDaoFunction {
 
-    Double moyenSalaire();
+    Double moyenSalaire() throws SQLException, ClassNotFoundException;
 
-    int nombreEmployer();
+    int nombreEmployer() throws SQLException, ClassNotFoundException;
 
-    Double salaireMax();
+    Double salaireMax() throws SQLException, ClassNotFoundException;
 
-    Double totalSalire();
+    Double totalSalire() throws SQLException, ClassNotFoundException;
 
-    EmployeChine minSalireEmploye();
+    EmployeChine minSalireEmploye() throws SQLException, ClassNotFoundException;
 
-    EmployeChine maxSalireEmploye();
+    EmployeChine maxSalireEmploye() throws SQLException, ClassNotFoundException;
 
-    List<Employe> listeEmployes();
+    List<EmployeChine> listeEmployes() throws SQLException, ClassNotFoundException;
 }

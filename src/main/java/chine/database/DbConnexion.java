@@ -13,7 +13,7 @@ public class DbConnexion {
      * @throws SQLException Connexion non etablie
      * @throws ClassNotFoundException Drive non present
      */
-    private static Connection getDbConnection() throws SQLException, ClassNotFoundException {
+    public static Connection getDbConnection() throws SQLException, ClassNotFoundException {
         if (connection==null) {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://immo-agence.fr:3306/projet", "projet", "projet");

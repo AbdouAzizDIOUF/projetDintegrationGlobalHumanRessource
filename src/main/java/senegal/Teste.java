@@ -7,25 +7,28 @@ import senegal.modele.EmployeSenegal;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Teste {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
-        DbConnexion.getDbConnection();
-        IDaoFunction dao = new IDaoFunctionImpl();
-        /*EmployeSenegal emp = new EmployeSenegal();
-        emp = dao.maxSalireEmploye();
-        System.out.println(emp.getPrenom());*/
-        List<EmployeSenegal> listeemp = dao.listeEmployes();
+
+        IDaoFunctionImpl dao = new IDaoFunctionImpl();
+
+        EmployeSenegal emp = dao.maxSalireEmploye();
+        System.out.println(emp.getId());
+        System.out.println(emp.getPrenom());
+        System.out.println(emp.getNom());
+       /* List<EmployeSenegal> listeemp = dao.listeEmployes();
         for (EmployeSenegal employeSenegal : listeemp) {
             System.out.println(employeSenegal.getId());
             System.out.println(employeSenegal.getNom());
             System.out.println(employeSenegal.getPrenom());
-        }
-        /*System.out.println(employe.getNom());
-        System.out.println(employe.getPrenom());*/
+        }*/
+
 
 
 
