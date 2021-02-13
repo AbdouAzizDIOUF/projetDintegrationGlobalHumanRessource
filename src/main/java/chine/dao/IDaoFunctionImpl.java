@@ -23,7 +23,7 @@ public class IDaoFunctionImpl implements IDaoFunction {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public List listeSalaires() throws SQLException, ClassNotFoundException {
+    public List<Double>listeSalaires() throws SQLException, ClassNotFoundException {
         List<Double> listeDesSalaires = new ArrayList();
         preparedStatement = DbConnexion.getPreparedStatement("SELECT * FROM InfoPaie");
         resultSet=preparedStatement.executeQuery();
