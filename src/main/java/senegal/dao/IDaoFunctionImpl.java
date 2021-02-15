@@ -23,7 +23,7 @@ public class IDaoFunctionImpl implements senegal.dao.IDaoFunction {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public List listeSalaires() throws SQLException, ClassNotFoundException {
+    public List<Double>listeSalaires() throws SQLException, ClassNotFoundException {
         List<Double> listeDesSalaires = new ArrayList();
         preparedStatement =DbConnexion.getPreparedStatement("SELECT * FROM infopaie");
         resultSet=preparedStatement.executeQuery();
