@@ -40,6 +40,7 @@ public class IDaoFunctionImpl implements IDaoFunction {
                     montantpret;
             listeDesSalaires.add(salaire);
         }
+
         return listeDesSalaires;
     }
 
