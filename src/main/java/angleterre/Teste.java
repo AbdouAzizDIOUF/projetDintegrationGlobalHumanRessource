@@ -19,7 +19,7 @@ public class Teste {
 
     private static String[] columns = {"ID", "Nom", "Prenom", "Age", "Sexe", "Telephone", "Email", "Adresse"};
 
-    private static String[] columnInfoPaie = {"Num Matricule", "Statut", "Poste", "Ville", "Contrat", "Date Debut Contrat", "Date Fin Contrat", "Departement", "Salaire De Base", "Pays"};
+    private static String[] columnInfoProff = {"Num Matricule","Employe ID", "Statut", "Poste", "Ville", "Contrat", "Date Debut Contrat", "Date Fin Contrat", "Departement", "Salaire De Base", "Pays"};
 
     private static String[] columnInfoPaies = {
             "ID","Employe ID","Nombre Heure", "taux Horraire", "Avantage", "Heure Sup","Pret", "Indemnite Logement", "Indemnite Transport", "Periode Paie"
@@ -38,9 +38,11 @@ public class Teste {
     private static List<InfoPaieAngleterre> infoPaieList = new ArrayList<>();
 
     public static void main(String[] args) throws IOException, InvalidFormatException {
-        createFileSource(columnInfoPaies, FILE_INF_PAIE,NAME_SOURCE_INFO_PAIE);
-        //createFileSource(columnInfoPaies, FILE_INF_PAIE,NAME_SOURCE_EMPLOYE);
-        //createFileSource(columnInfoPaies, FILE_INF_PAIE,NAME_SOURCE_EMPLOYE);
+
+        /*createFileSource(columnInfoPaies, FILE_INF_PAIE,NAME_SOURCE_INFO_PAIE);
+        createFileSource(columnInfoProff, FILE_INF_PROF,NAME_SOURCE_INFO_PROF);
+        createFileSource(columns, FILE_EMP,NAME_SOURCE_EMPLOYE);*/
+
     }
 
 
