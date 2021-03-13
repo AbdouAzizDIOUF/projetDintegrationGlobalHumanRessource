@@ -1,15 +1,17 @@
 package angleterre.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import model.InfoPaie;
 
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @Data
 public class InfoPaieAngleterre extends InfoPaie {
 
-    private Double indLogement;
-    private Double indTransport;
+    private double indLogement;
+    private double indTransport;
     private String periodePaie;
     private int employeId;
 
@@ -21,8 +23,8 @@ public class InfoPaieAngleterre extends InfoPaie {
             double montantAvantage,
             int heureSup,
             double montantPret,
-            Double indLogement,
-            Double indTransport,
+            double indLogement,
+            double indTransport,
             String periodePaie
             )
     {

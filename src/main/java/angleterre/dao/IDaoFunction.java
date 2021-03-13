@@ -1,6 +1,7 @@
 package angleterre.dao;
 
 import angleterre.model.EmployeAngleterre;
+import angleterre.model.Salaire;
 import chine.model.EmployeChine;
 import model.Employe;
 
@@ -9,18 +10,19 @@ import java.util.List;
 
 public interface IDaoFunction {
 
-    Double moyenSalaire();
+    Double moyenSalaire() throws IOException;
 
-    int nombreEmployer();
+    int nombreEmployer() throws IOException;
 
-    Double salaireMax();
+    Double salaireMax() throws IOException;
 
-    Double totalSalire();
+    Double totalSalaire() throws IOException;
 
-    EmployeChine minSalireEmploye();
+    Salaire minSalaireEmploye() throws IOException;
 
-    EmployeChine maxSalireEmploye();
+    Salaire maxSalaireEmploye() throws IOException;
 
     List<EmployeAngleterre> listeEmployes() throws IOException;
 
+    List<Salaire> listeSalaires() throws IOException;
 }

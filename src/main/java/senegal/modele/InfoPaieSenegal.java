@@ -3,6 +3,7 @@ package senegal.modele;
 import model.InfoPaie;
 
 public class InfoPaieSenegal extends InfoPaie {
+
     private float primeAssiduite;
     private float primeRestauration;
     private float impotRevenu;
