@@ -13,10 +13,10 @@ public class Teste {
 
         //System.out.println(iDaoFunction.maxSalaireEmploye());
         //System.out.println(iDaoFunction.minSalaireEmploye());
-
-        iDaoFunction.listeSalaires().forEach(salaire->{
+        System.out.println(iDaoFunction.moyenSalaire());
+        /*iDaoFunction.listeSalaires().forEach(salaire->{
             System.out.println(salaire.toString());
-        });
+        });*/
     }
 
 
