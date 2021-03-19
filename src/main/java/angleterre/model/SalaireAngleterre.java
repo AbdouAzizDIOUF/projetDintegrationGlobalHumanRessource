@@ -21,6 +21,7 @@ public class Salaire implements Comparable<Salaire> {
     private Double indTransport;
     private Double pret;
     private Double salaire;
+    private String periodePaie;
 
 
     @Override
