@@ -19,7 +19,7 @@ public class Teste {
 
     private static String[] columns = {"ID", "Nom", "Prenom", "Age", "Sexe", "Telephone", "Email", "Adresse"};
 
-    private static String[] columnInfoProff = {"Num Matricule","Employe ID", "Statut", "Poste", "Ville", "Contrat", "Date Debut Contrat", "Date Fin Contrat", "Departement", "Salaire De Base", "Pays"};
+    private static String[] columnInfoProff = {"Num Matricule","Employe ID", "Statut", "Poste", "Ville", "Contrat", "Date Debut Contrat", "Date Fin Contrat", "Departement", "SalaireAngleterre De Base", "Pays"};
 
     private static String[] columnInfoPaies = {
             "ID","Employe ID","Nombre Heure", "taux Horraire", "Avantage", "Heure Sup","Pret", "Indemnite Logement", "Indemnite Transport", "Periode Paie"

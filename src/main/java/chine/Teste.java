@@ -1,24 +1,17 @@
 package chine;
 
-import chine.dao.IDaoFunction;
-import chine.dao.IDaoFunctionImpl;
+import chine.dao.IDaoFunctionImplChine;
 import chine.database.DbConnexion;
-import chine.model.EmployeChine;
+import dao.IDaoFunction;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.List;
 
 public class Teste {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        IDaoFunction dao = new IDaoFunctionImpl();
-        double moyenne = dao.moyenSalaire();
-        double totalsal = dao.totalSalire();
-        int nbemp = dao.nombreEmployer();
-        System.out.println("Moyenne \n: "+moyenne);
-        System.out.println("totale salaire \n: "+totalsal);
-        System.out.println("nomreemploye \n: "+nbemp);
+        IDaoFunction dao = new IDaoFunctionImplChine();
+
     }
 
     private static int createTableEmployeChine() throws SQLException, ClassNotFoundException {

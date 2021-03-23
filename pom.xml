@@ -29,12 +29,26 @@
             <version>8.0.23</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/net.java.dev.swing-layout/swing-layout -->
+        <dependency>
+            <groupId>net.java.dev.swing-layout</groupId>
+            <artifactId>swing-layout</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.2.18</version>
         </dependency>
+
+
+
+
+
+
 
 
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
@@ -48,6 +62,11 @@
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>5.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>2.0.1</version>
         </dependency>
 
     </dependencies>

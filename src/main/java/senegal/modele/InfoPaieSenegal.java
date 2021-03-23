@@ -1,43 +1,33 @@
 package senegal.modele;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import model.InfoPaie;
 
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor @Data
 public class InfoPaieSenegal extends InfoPaie {
 
-    private float primeAssiduite;
-    private float primeRestauration;
-    private float impotRevenu;
+    private double primeAssiduite;
+    private double primeRestauration;
+    private double impotRevenu;
 
-    public InfoPaieSenegal(float primeAssiduite, float primeRestauration, float impotRevenu) {
+
+    public InfoPaieSenegal(int id,
+                           int employeId,
+                           double nombreHeure,
+                           double tauxHoraire,
+                           double montantAvantage,
+                           int heureSup,
+                           double montantPret,
+                           double primeAssiduite,
+                           double primeRestauration,
+                           double impotRevenu,
+                           String periodePaie) {
+        super(id, employeId, nombreHeure, tauxHoraire, montantAvantage, heureSup, montantPret, periodePaie);
         this.primeAssiduite = primeAssiduite;
         this.primeRestauration = primeRestauration;
-        this.impotRevenu = impotRevenu;
-    }
-
-    public InfoPaieSenegal() {
-    }
-
-    public float getPrimeAssiduite() {
-        return primeAssiduite;
-    }
-
-    public void setPrimeAssiduite(float primeAssiduite) {
-        this.primeAssiduite = primeAssiduite;
-    }
-
-    public float getPrimeRestauration() {
-        return primeRestauration;
-    }
-
-    public void setPrimeRestauration(float primeRestauration) {
-        this.primeRestauration = primeRestauration;
-    }
-
-    public float getImpotRevenu() {
-        return impotRevenu;
-    }
-
-    public void setImpotRevenu(float impotRevenu) {
         this.impotRevenu = impotRevenu;
     }
 }

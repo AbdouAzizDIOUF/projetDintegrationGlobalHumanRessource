@@ -17,7 +17,7 @@ public class IDaoFunctionImpl implements IDaoFunction {
     private PreparedStatement preparedStatement;
 
     /**
-     * Methode de teste pour obtenir le nombre total d'employes
+     * Methode de Teste pour obtenir le nombre total d'employes
      *
      * @return
      * @throws SQLException
@@ -82,7 +82,7 @@ public class IDaoFunctionImpl implements IDaoFunction {
     public int nombreEmployer() throws SQLException, ClassNotFoundException {
 
         int nbEmploye = 0;
-        preparedStatement = DbConnexion.getPreparedStatement("SELECT COUNT(*) AS NB_EMPLOYES FROM EmployeChine");
+        preparedStatement = DbConnexion.getPreparedStatement("SELECT COUNT(*) AS NB_EMPLOYES FROM EmployerChine");
         resultSet = preparedStatement.executeQuery();
         if(resultSet.next()){
             nbEmploye = resultSet.getInt("NB_EMPLOYES");
@@ -126,7 +126,7 @@ public class IDaoFunctionImpl implements IDaoFunction {
                 indice=id;
             }
         }
-        preparedStatement = DbConnexion.getPreparedStatement("SELECT * FROM EmployeChine where id=?");
+        preparedStatement = DbConnexion.getPreparedStatement("SELECT * FROM EmployerChine where id=?");
         preparedStatement.setInt(1, indice);
         resultSet=preparedStatement.executeQuery();
         if (resultSet.next()){
@@ -162,7 +162,7 @@ public class IDaoFunctionImpl implements IDaoFunction {
                 indice=id;
             }
         }
-        preparedStatement = DbConnexion.getPreparedStatement("SELECT * FROM EmployeChine where id=?");
+        preparedStatement = DbConnexion.getPreparedStatement("SELECT * FROM EmployerChine where id=?");
         preparedStatement.setInt(1, indice);
         resultSet=preparedStatement.executeQuery();
         if (resultSet.next()){
@@ -189,7 +189,7 @@ public class IDaoFunctionImpl implements IDaoFunction {
     @Override
     public List<EmployeChine> listeEmployes() throws SQLException, ClassNotFoundException {
         List<EmployeChine>listeDesEmployes = new ArrayList();
-        preparedStatement = DbConnexion.getPreparedStatement("SELECT * FROM EmployeChine");
+        preparedStatement = DbConnexion.getPreparedStatement("SELECT * FROM EmployerChine");
         resultSet=preparedStatement.executeQuery();
         while (resultSet.next()){
             int id = resultSet.getInt("id");

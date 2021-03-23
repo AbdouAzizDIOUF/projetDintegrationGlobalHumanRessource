@@ -12,27 +12,20 @@ public class InfoPaieAngleterre extends InfoPaie {
 
     private double indLogement;
     private double indTransport;
-    private String periodePaie;
-    private int employeId;
 
-    public InfoPaieAngleterre(
-            int id,
-            int employeId,
-            double nombreHeure,
-            double tauxHoraire,
-            double montantAvantage,
-            int heureSup,
-            double montantPret,
-            double indLogement,
-            double indTransport,
-            String periodePaie
-            )
-    {
-        super(id, nombreHeure, tauxHoraire, montantAvantage, heureSup, montantPret);
-        this.employeId = employeId;
+    public InfoPaieAngleterre(int id,
+                              int employeId,
+                              double nombreHeure,
+                              double tauxHoraire,
+                              double montantAvantage,
+                              int heureSup,
+                              double montantPret,
+                              double indLogement,
+                              double indTransport,
+                              String periodePaie) {
+        super(id, employeId, nombreHeure, tauxHoraire, montantAvantage, heureSup, montantPret, periodePaie);
         this.indLogement = indLogement;
         this.indTransport = indTransport;
-        this.periodePaie = periodePaie;
     }
 
     @Override
@@ -40,7 +33,6 @@ public class InfoPaieAngleterre extends InfoPaie {
         return super.toString()+" " +
                 "indLogement=" + indLogement +
                 ", indTransport=" + indTransport +
-                ", periodePaie='" + periodePaie + '\'' +
                 '}';
     }
 }

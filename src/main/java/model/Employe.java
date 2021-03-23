@@ -2,12 +2,11 @@ package model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import java.util.List;
 
 @NoArgsConstructor @Data
-public class Employe{
+public class Employe {
 
     protected int id;
     protected String nom;

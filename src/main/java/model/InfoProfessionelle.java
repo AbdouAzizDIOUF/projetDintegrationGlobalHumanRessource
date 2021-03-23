@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 public class InfoProfessionelle {
 
     protected String numMatricule;
+    protected int employeId;
     protected String statut;
     protected String poste;
     protected String ville;
@@ -19,8 +20,9 @@ public class InfoProfessionelle {
 
     private Employe employe;
 
-    public InfoProfessionelle(String numMatricule, String statut, String poste, String ville, String contrat, String dateDebutContrat, String dateFinContrat, String departement, double salaireDeBase, String pays) {
+    public InfoProfessionelle(String numMatricule, int employeId, String statut, String poste, String ville, String contrat, String dateDebutContrat, String dateFinContrat, String departement, double salaireDeBase, String pays) {
         this.numMatricule = numMatricule;
+        this.employeId = employeId;
         this.statut = statut;
         this.poste = poste;
         this.ville = ville;
@@ -37,6 +39,7 @@ public class InfoProfessionelle {
     public String toString() {
         return "InfoProfessionelle{" +
                 "numMatricule='" + numMatricule + '\'' +
+                "employeId=" + employeId +'\''+
                 ", statut='" + statut + '\'' +
                 ", poste='" + poste + '\'' +
                 ", ville='" + ville + '\'' +
@@ -45,7 +48,6 @@ public class InfoProfessionelle {
                 ", dateFinContrat='" + dateFinContrat + '\'' +
                 ", departement='" + departement + '\'' +
                 ", salaireDeBase=" + salaireDeBase +
-                ", pays='" + pays + '\'' +
-                '}';
+                ", pays='" + pays + '\'';
     }
 }

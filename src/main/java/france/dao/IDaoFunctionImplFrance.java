@@ -1,16 +1,14 @@
 package france.dao;
 
 import france.model.EmployerFrance;
-import france.model.EmployerFrance;
-import france.model.EmployerFrance;
-import france.model.Salaire;
-import france.model.EmployerFrance;
 import france.model.InfoPaieFrance;
 import france.model.InfoProfessionelFrance;
+import france.model.SalaireFrance;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import dao.IDaoFunction;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,78 +18,83 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-public class IDaoFunctionImpl implements IDaoFunction {
+public class IDaoFunctionImplFrance implements IDaoFunction<EmployerFrance, InfoProfessionelFrance, InfoPaieFrance, SalaireFrance> {
 
     private static final String PATH = "E:\\Projets\\java\\classe\\projetIntegrationWithMaven\\src\\main\\resources\\datasources\\france\\";
 
-    public static List<EmployerFrance> EMPLOYEES = null;
-    public static List<InfoProfessionelFrance> INFO_PROF = null;
-    public static List<InfoPaieFrance> INFO_PAIE = null;
 
     @Override
-    public Double moyenSalaire() throws IOException {
-        double salaireMoy = getInfoPaies().stream().mapToDouble(paie -> ( (paie.getNombreHeure() + paie.getHeureSup()) * paie.getTauxHoraire()) + paie.getMontantAvantage() + paie.getIndMatrimoniale() + paie.getIndTransport() - paie.getMontantPret()).sum();
-        return (salaireMoy / getEmployees().size());
+    public double moyenSalaireMounth(String date) throws IOException {
+        return (this.getSalairesByMounth(date).stream().mapToDouble(SalaireFrance::getSalaire).sum() / this.getSalairesByMounth(date).size());
     }
 
     @Override
-    public int nombreEmployer() throws IOException {
+    public int getNombreEmployer() throws IOException {
         return getEmployees().size();
     }
 
     @Override
-    public Double salaireMax() throws IOException {
-        return null;
+    public double getBudgetTotal(String date) throws IOException {
+        return Math.round(this.getSalairesByMounth(date).stream().mapToDouble(SalaireFrance::getSalaire).sum());
     }
 
     @Override
-    public Double totalSalaire() throws IOException {
-        return getInfoPaies().stream().mapToDouble(paie -> ( (paie.getNombreHeure() + paie.getHeureSup()) * paie.getTauxHoraire()) + paie.getMontantAvantage() + paie.getIndMatrimoniale() + paie.getIndTransport() - paie.getMontantPret()).sum();
+    public double pourcentageFeminin() throws IOException {
+        int nbFemmes = (int) getEmployees().stream().filter(emp -> "feminin".equals(emp.getSexe())).count();
+        return Math.round(((double) (nbFemmes*100)/this.getEmployees().size()));
     }
 
     @Override
-    public Salaire minSalaireEmploye() throws IOException {
-        Collections.sort(listeSalaires());
-        int dernier = listeSalaires().size();
-
-        return listeSalaires().get(0);
+    public double pourcentageHomme() throws IOException {
+        int nbHommes = (int) getEmployees().stream().filter(emp -> "masculin".equals(emp.getSexe())).count();
+        return  Math.round(((double)(nbHommes*100)/getEmployees().size()));
     }
 
     @Override
-    public Salaire maxSalaireEmploye() throws IOException {
-        Collections.sort(listeSalaires());
-        int dernier = listeSalaires().size();
-
-        return listeSalaires().get(dernier-1);
+    public double pourcentageCadres() throws IOException {
+        int cadre = (int) this.getInfoProffs().stream().filter(p -> "Cadre".equals(p.getStatut())).count();
+        return Math.round((double)((cadre * 100) / this.getInfoProffs().size()));
     }
 
     @Override
-    public List<EmployerFrance> listeEmployes() throws IOException
-    {
-        return getEmployees();
+    public double pourcentageOuvriers() throws IOException {
+        return Math.round((100-this.pourcentageCadres()));
+    }
+
+
+    @Override
+    public SalaireFrance minSalaireEmployeByMounth(String date) throws IOException {
+        return this.getSalairesByMounth(date).get(0);
     }
 
     @Override
-    public List<Salaire> listeSalaires() throws IOException {
-        List<Salaire> salaires = new ArrayList<>();
+    public SalaireFrance maxSalaireEmployeByMounth(String date) throws IOException {
+        return this.getSalairesByMounth(date).get(getSalairesByMounth(date).size()-1);
+    }
+
+    @Override
+    public List<SalaireFrance> getSalairesByMounth(String date) throws IOException {
+        List<SalaireFrance> salaires = new ArrayList<>();
         getEmployees().forEach(empl->{
             try {
                 getInfoProffs().forEach(prof->{
                     try {
-                        getInfoPaies().forEach(paie->{
+                        getInfoPaiesByMounth(date).forEach(paie->{
                             if( (empl.getId()==prof.getEmployeId()) && (prof.getEmployeId() == paie.getEmployeId()))
                             {
-                                Salaire salaire = new Salaire();
+                                SalaireFrance salaire = new SalaireFrance();
                                 salaire.setMatricule(prof.getNumMatricule());
                                 salaire.setNom(empl.getNom());
                                 salaire.setPrenom(empl.getPrenom());
                                 salaire.setNombreHeure(paie.getNombreHeure());
                                 salaire.setHeureSup(paie.getHeureSup());
                                 salaire.setAvantage(paie.getMontantAvantage());
-                                salaire.setIndMatrimoniale(paie.getIndMatrimoniale());
                                 salaire.setIndTransport(paie.getIndTransport());
                                 salaire.setPret(paie.getMontantPret());
+                                salaire.setIndMatrimoniale(paie.getIndMatrimoniale());
+                                salaire.setPays(prof.getPays());
                                 salaire.setSalaire(getSalaire(paie));
+                                salaire.setPeriodePaie(paie.getPeriodePaie());
 
                                 salaires.add(salaire);
                             }
@@ -104,11 +107,12 @@ public class IDaoFunctionImpl implements IDaoFunction {
                 e.printStackTrace();
             }
         });
+        Collections.sort(salaires);
 
         return salaires;
     }
 
-
+    @Override
     public List<EmployerFrance> getEmployees() throws IOException {
         File employerFile = new File(PATH + "employeFrance.xlsx");
         FileInputStream fis = new FileInputStream(employerFile);
@@ -153,15 +157,14 @@ public class IDaoFunctionImpl implements IDaoFunction {
             }
             ++rows;
         }
-
         Collections.sort(listeEmpl);
-
         workbook.close();
         fis.close();
 
         return listeEmpl;
     }
 
+    @Override
     public List<InfoProfessionelFrance> getInfoProffs() throws IOException {
         File infoProff = new File(PATH+"infoProffFrance.xlsx");
         FileInputStream fis = new FileInputStream(infoProff);
@@ -178,7 +181,7 @@ public class IDaoFunctionImpl implements IDaoFunction {
             if (rows!=0)
             {
                 int i=0;
-                while(cellIterator.hasNext())
+                while (cellIterator.hasNext())
                 {
                     Cell cell = cellIterator.next();
                     if (i==0){
@@ -214,15 +217,24 @@ public class IDaoFunctionImpl implements IDaoFunction {
             }
             ++rows;
         }
-
         workbook.close();
         fis.close();
 
         return infoProffList;
     }
 
+    @Override
+    public List<InfoPaieFrance> getInfoPaiesByMounth(String date) throws IOException{
+        List<InfoPaieFrance> infoPaieList = new ArrayList<>();
+        this.getInfoPaies().forEach(paie->{
+            if (paie.getPeriodePaie().equals(date)){
+                infoPaieList.add(paie);
+            }});
 
-    public List<InfoPaieFrance> getInfoPaies() throws IOException {
+        return infoPaieList;
+    }
+
+    private List<InfoPaieFrance> getInfoPaies() throws IOException {
         File infoPaiement = new File(PATH+"infoPaieFrance.xlsx");
         FileInputStream fis = new FileInputStream(infoPaiement);
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
@@ -269,7 +281,6 @@ public class IDaoFunctionImpl implements IDaoFunction {
             }
             ++rows;
         }
-
         workbook.close();
         fis.close();
 

@@ -17,7 +17,7 @@ public class IDaoFunctionImpl implements senegal.dao.IDaoFunction {
     private PreparedStatement preparedStatement;
 
     /**
-     * Methode de teste pour obtenir le nombre total d'employes
+     * Methode de Teste pour obtenir le nombre total d'employes
      *
      * @return
      * @throws SQLException

@@ -3,29 +3,29 @@ package angleterre.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import model.Salaire;
 
-import java.util.Comparator;
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor @AllArgsConstructor @Data
+public class SalaireAngleterre extends Salaire{
 
-@NoArgsConstructor @AllArgsConstructor @Data @ToString
-public class Salaire implements Comparable<Salaire> {
 
-    private String matricule;
-    private String nom;
-    private String prenom;
-    private Double nombreHeure;
-    private int heureSup;
-    private Double avantage;
-    private Double indLogement;
     private Double indTransport;
-    private Double pret;
-    private Double salaire;
-    private String periodePaie;
+    private Double indLogement;
 
+    public SalaireAngleterre(String matricule, String nom, String prenom, Double nombreHeure, int heureSup, double avantage, double pret, double salaire, String periodePaie, Double indTransport, Double indLogement, String pays) {
+        super(matricule, nom, prenom, nombreHeure, heureSup, avantage, pret, salaire, periodePaie, pays);
+        this.indTransport = indTransport;
+        this.indLogement = indLogement;
+    }
 
     @Override
-    public int compareTo(Salaire o) {
-        return  (int)(this.salaire - o.getSalaire());
+    public String toString() {
+        return super.toString()+
+                "indTransport=" + indTransport +
+                ", indLogement=" + indLogement +
+                '}';
     }
 }

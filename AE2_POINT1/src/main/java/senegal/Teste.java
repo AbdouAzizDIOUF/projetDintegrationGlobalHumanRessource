@@ -22,8 +22,8 @@ public class Teste {
         System.out.println(emp.getId());
         System.out.println(emp.getPrenom());
         System.out.println(emp.getNom());
-       /* List<EmployeSenegal> listeemp = dao.listeEmployes();
-        for (EmployeSenegal employeSenegal : listeemp) {
+       /* List<EmployerSenegal> listeemp = dao.listeEmployes();
+        for (EmployerSenegal employeSenegal : listeemp) {
             System.out.println(employeSenegal.getId());
             System.out.println(employeSenegal.getNom());
             System.out.println(employeSenegal.getPrenom());

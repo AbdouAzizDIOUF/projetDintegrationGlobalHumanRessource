@@ -9,7 +9,6 @@ import model.InfoProfessionelle;
 @NoArgsConstructor @Data
 public class InfoProfessionelAngleterre extends InfoProfessionelle {
 
-    private int employeId;
 
     public InfoProfessionelAngleterre(
             String numMatricule,
@@ -23,8 +22,7 @@ public class InfoProfessionelAngleterre extends InfoProfessionelle {
             String departement,
             double salaireDeBase,
             String pays) {
-        super(numMatricule, statut, poste, ville, contrat, dateDebutContrat, dateFinContrat, departement, salaireDeBase, pays);
-        this.employeId = employeId;
+        super(numMatricule, employeId, statut, poste, ville, contrat, dateDebutContrat, dateFinContrat, departement, salaireDeBase, pays);
     }
 
     @Override

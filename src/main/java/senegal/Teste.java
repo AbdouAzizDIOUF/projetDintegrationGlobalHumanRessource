@@ -1,35 +1,25 @@
 package senegal;
 
-import senegal.dao.IDaoFunction;
-import senegal.dao.IDaoFunctionImpl;
+import dao.IDaoFunction;
+import senegal.dao.IDaoFunctionImplSenegal;
 import senegal.database.DbConnexion;
-import senegal.modele.EmployeSenegal;
+import senegal.modele.EmployerSenegal;
 
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Teste {
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException {
 
 
-        IDaoFunctionImpl dao = new IDaoFunctionImpl();
+        IDaoFunctionImplSenegal dao = new IDaoFunctionImplSenegal();
 
-        EmployeSenegal emp = dao.maxSalireEmploye();
-        System.out.println(emp.getId());
-        System.out.println(emp.getPrenom());
-        System.out.println(emp.getNom());
-       /* List<EmployeSenegal> listeemp = dao.listeEmployes();
-        for (EmployeSenegal employeSenegal : listeemp) {
-            System.out.println(employeSenegal.getId());
-            System.out.println(employeSenegal.getNom());
-            System.out.println(employeSenegal.getPrenom());
-        }*/
+        //System.out.println(dao.getNombreEmployer());
 
-
+        createInfoProfessionnelle();
+        createInfoPaie();
 
 
     }
@@ -56,8 +46,9 @@ public class Teste {
     private static int createInfoPaie() throws SQLException, ClassNotFoundException {
         PreparedStatement preparedStatement;
         String sql = """
-            create Table InfoPaie (id SERIAL Primary Key NOT NULL,
-            employe int,
+            create Table InfoPaieSenegal (
+            id SERIAL Primary Key NOT NULL,
+            employeId int,
             nombreHeure float,
             tauxHoraire float,
             montantAvantage float,
@@ -67,7 +58,7 @@ public class Teste {
             primeRestauration float,
             impotRevenu float,
             periodePaie varchar(255),
-            Foreign key (employe) References EmployeSenegal(id))
+            Foreign key (employeId) References EmployerSenegal(id))
             """;
         preparedStatement = DbConnexion.getPreparedStatement(sql);
 
@@ -79,19 +70,19 @@ public class Teste {
         PreparedStatement preparedStatement;
         String sql = """
             create Table InfoProfessionnelle(
-            id SERIAL Primary key NOT NULL,
-            employe int,
-            numMatricule varchar(255),
+            numMatricule varchar(255) PRIMARY KEY NOT NULL,
+            employeId int,
             statut varchar(255),
             poste varchar(255),
             ville varchar(255),
             contrat varchar(255),
-            dateDebutContrat date,
-            dateFinContrat date,
+            dateDebutContrat varchar(255),
+            dateFinContrat varchar(255),
             departement varchar(255),
             salaireDeBase float,
             pays varchar(255),
-            Foreign key (employe) References EmployeSenegal(id))
+            Foreign key (employeId) References EmployerSenegal(id)
+            )
             """;
         preparedStatement = DbConnexion.getPreparedStatement(sql);
 
